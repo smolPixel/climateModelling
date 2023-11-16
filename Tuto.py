@@ -10,7 +10,10 @@ labels = list(df['area'])
 #Some encoding: We'll change the months to 1-12 and the days to 0/1 for weekdays/weekend (friday included)
 X_train, X_test, y_train, y_test = train_test_split(features,labels, test_size = 0.2, random_state = 42)
 
-print(X_train)
+X_train_features=[]
+for row in X_train:
+	print(row)
+	fds
 print(y_train)
 
 clf=LogisticRegression().fit(X_train, y_train)
