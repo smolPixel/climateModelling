@@ -14,4 +14,13 @@ X_train_features=[]
 for i, row in X_train.iterrows():
 	X_train_features.append(list(row))
 
+X_test_features=[]
+for i, row in X_test.iterrows():
+	X_test_features.append(list(row))
+
+
+
 clf=LinearRegression().fit(X_train_features, y_train)
+
+preds=clf.score(X_test, y_test)
+print(preds)
