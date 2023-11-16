@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn import linear_model
+from sklearn.linear_model import LinearRegression
 
 df=pd.read_csv('data/ForestFiresUCIIrvine/forestfires.csv')
 df['day'] = ((df['day'] == 'sun') | (df['day'] == 'sat')| (df['day'] == 'frid'))
@@ -14,4 +14,4 @@ X_train_features=[]
 for i, row in X_train.iterrows():
 	X_train_features.append(list(row))
 
-clf=linear_model().fit(X_train_features, y_train)
+clf=LinearRegression().fit(X_train_features, y_train)
