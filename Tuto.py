@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import linear_model
+from sklearn import linear_model
 
 df=pd.read_csv('data/ForestFiresUCIIrvine/forestfires.csv')
 df['day'] = ((df['day'] == 'sun') | (df['day'] == 'sat')| (df['day'] == 'frid'))
