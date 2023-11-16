@@ -12,7 +12,7 @@ X_train, X_test, y_train, y_test = train_test_split(features,labels, test_size =
 
 X_train_features=[]
 for i, row in X_train.iterrows():
-	print(row)
+	print(list(row))
 	fds
 print(y_train)
 
