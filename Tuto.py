@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 
 df=pd.read_csv('data/ForestFiresUCIIrvine/forestfires.csv')
 df['day'] = ((df['day'] == 'sun') | (df['day'] == 'sat')| (df['day'] == 'frid'))
@@ -10,3 +11,5 @@ labels = df['area'].values.reshape(-1, 1)
 X_train, X_test, y_train, y_test = train_test_split(features,labels, test_size = 0.2, random_state = 42)
 
 print(X_train, y_train)
+
+clf=LogisticRegression().fit(X_train, y_train)
