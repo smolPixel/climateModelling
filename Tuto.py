@@ -24,3 +24,6 @@ clf=LinearRegression().fit(X_train_features, y_train)
 
 preds=clf.score(X_test, y_test)
 print(preds)
+
+preds=clf.score(X_train, y_train)
+print(preds)
