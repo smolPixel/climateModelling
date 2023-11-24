@@ -1,7 +1,7 @@
 from torchdata.datapipes.iter import FileLister, FileOpener
 import json
 
-set='dev'
+set='test'
 
 datapipe1 = FileLister(".", "*.tfrecord")
 datapipe2 = FileOpener(datapipe1, mode="b")
