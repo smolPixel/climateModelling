@@ -14,6 +14,7 @@ out=open(f'{set}.jsonl', 'a+')
 i=0
 for example in tfrecord_loader_dp:
 	i+=1
+	print(i)
 	example={key: item.tolist() for key, item in example.items()}
 	jj=json.dumps(example)
 	out.write(jj)
