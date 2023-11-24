@@ -12,6 +12,8 @@ i=0
 for example in tfrecord_loader_dp:
 	i+=1
 	print(example)
+	example={key: item.tolist() for key, item in example.items()}
+	print(example)
 	jj=json.dumps(example)
 	print(jj)
 	fds
