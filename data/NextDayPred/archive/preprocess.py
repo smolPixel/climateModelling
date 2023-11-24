@@ -8,15 +8,16 @@ datapipe2 = FileOpener(datapipe1, mode="b")
 tfrecord_loader_dp = datapipe2.load_from_tfrecord()
 print('hello')
 
+
+out=open(f'{set}.jsonl', 'a+')
+
 i=0
 for example in tfrecord_loader_dp:
 	i+=1
-	print(example)
 	example={key: item.tolist() for key, item in example.items()}
-	print(example)
 	jj=json.dumps(example)
-	print(jj)
-	fds
+	out.write(out)
+	out.write('\n')
 	# print(example)
 	# fds
 print(i)
