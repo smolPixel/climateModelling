@@ -11,6 +11,7 @@ print('hello')
 i=0
 for example in tfrecord_loader_dp:
 	i+=1
+	print(example)
 	jj=json.dumps(example)
 	print(jj)
 	fds
