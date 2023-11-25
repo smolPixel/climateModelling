@@ -60,22 +60,13 @@ class Linear_Classifier(pl.LightningModule):
         return loss
 
     def training_step(self, batch, batch_idx):
-        print(batch)
-        fds
-        input=batch['input']
-        bs = input.shape[0]
-        if self.argdict['need_embedding']:
-            input=self.embedding(input)
-            input=torch.mean(input, dim=1)
-        input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
-        output=self.linear_layer(input_sequence)
-        best=torch.softmax(output, dim=-1)
-        pred=torch.argmax(best, dim=-1)
-        acc=accuracy_score(batch['label'].cpu(), pred.cpu())
-        loss=self.loss_function(output, batch['label'])
+        input=batch['PrevFireMask']
+        bs=input.shape[0]
+        output=batch['FireMask']
+        pred=self.forward(input)
+
+        loss=self.loss_function(pred, output)
         self.log("Loss", loss, on_epoch=True, on_step=True, prog_bar=True, logger=False,
-                 batch_size=bs)
-        self.log("Acc Train", acc, on_epoch=True, on_step=False, prog_bar=True, logger=False,
                  batch_size=bs)
         return loss
 
@@ -89,10 +80,9 @@ class Linear_Classifier(pl.LightningModule):
         pred=self.forward(input)
 
         loss=self.loss_function(pred, output)
-        print(loss)
         # self.log("Loss", loss, on_epoch=True, on_step=False, prog_bar=True, logger=False,
         #          batch_size=bs)
-        self.log("loss", loss, on_epoch=True, on_step=False, prog_bar=True, logger=False,
+        self.log("Loss Val", loss, on_epoch=True, on_step=False, prog_bar=True, logger=False,
                  batch_size=bs)
         return loss
 
