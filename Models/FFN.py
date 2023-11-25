@@ -75,7 +75,7 @@ class Linear_Classifier(pl.LightningModule):
 
 
     def validation_step(self, batch, batch_idx):
-        for key, value in batch:
+        for key, value in batch.items():
             print(key)
         input=batch['previous fire mask']
         output=batch['fire mask']
