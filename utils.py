@@ -21,8 +21,6 @@ class Envirodataset(Dataset):
 			self.data[len(self.data)]=row
 			if argdict['short_data'] and len(self.data)>10:
 				break
-		print(self.data)
-		fds
 
 	def reset_index(self):
 		new_dat = {}
@@ -35,7 +33,7 @@ class Envirodataset(Dataset):
 
 	def __getitem__(self, item):
 		print(item)
-		self.data[item]
+		print(self.data[item])
 		print('----')
 		input = self.data[item]['input'][:self.max_len]
 		length= len(input)
