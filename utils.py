@@ -32,7 +32,8 @@ class Envirodataset(Dataset):
 		return len(self.data)
 
 	def __getitem__(self, item):
-
+		print(item)
+		
 		input = self.data[item]['input'][:self.max_len]
 		length= len(input)
 		label = self.data[item]['label']
