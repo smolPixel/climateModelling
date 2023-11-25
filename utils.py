@@ -16,7 +16,7 @@ class Envirodataset(Dataset):
 		self.data = {}
 		file=open(data_file, 'r').readlines()
 		for i, row in enumerate(file):
-			print(row)
+			print(row.keys())
 			fds
 			index+=1
 
