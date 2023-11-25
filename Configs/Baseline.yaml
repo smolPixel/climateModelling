@@ -1,5 +1,5 @@
 path_data: 'data/NextDayPred/archive'
-
+nb_epoch: 10
 
 
 short_data: True
