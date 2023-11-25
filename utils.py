@@ -32,22 +32,7 @@ class Envirodataset(Dataset):
 		return len(self.data)
 
 	def __getitem__(self, item):
-		print(item)
-		print(self.data[item])
-		print('----')
-		input = self.data[item]['input'][:self.max_len]
-		length= len(input)
-		label = self.data[item]['label']
-		input.extend([self.pad_idx] * (self.max_len - len(input)))
-		target=input[1:]
-		input=input[:-1]
-		return {
-			'sentence': self.data[item]['sentence'],
-			'length': length,
-			'input': np.asarray(input, dtype=int),
-			'target': np.asarray(target, dtype=int),
-			'label': label,
-		}
+		return self.data[item]
 
 	def iterexamples(self):
 		for i, ex in self.data.items():
