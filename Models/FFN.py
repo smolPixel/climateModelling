@@ -88,7 +88,7 @@ class Linear_Classifier(pl.LightningModule):
         output=batch['FireMask']
         pred=self.forward(input)
 
-        loss=self.loss_function(output, batch['label'])
+        loss=self.loss_function(pred, output)
         print(loss)
         # self.log("Loss", loss, on_epoch=True, on_step=False, prog_bar=True, logger=False,
         #          batch_size=bs)
