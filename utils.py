@@ -8,7 +8,7 @@ import copy
 import re
 #
 class Envirodataset(Dataset):
-	def __init__(self, data_file):
+	def __init__(self, data_file, argdict):
 		super().__init__()
 		"""data: tsv of the data
 		   tokenizer: tokenizer trained
@@ -19,6 +19,8 @@ class Envirodataset(Dataset):
 			row=json.loads(row)
 			row={key: torch.tensor(it) for key, it in row.items()}
 			self.data[len(self.data)]=row
+			if argdict['short_data'] and len(self.data)>10:
+				break
 
 	def reset_index(self):
 		new_dat = {}

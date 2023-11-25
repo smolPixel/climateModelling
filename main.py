@@ -4,9 +4,9 @@ import argparse
 
 
 def main(argdict):
-    train=Envirodataset('data/NextDayPred/archive/train.jsonl')
-    dev=Envirodataset('data/NextDayPred/archive/dev.jsonl')
-    test=Envirodataset('data/NextDayPred/archive/test.jsonl')
+    train=Envirodataset(f'{argdict["path_data"]}/train.jsonl', argdict)
+    dev=Envirodataset(f'{argdict["path_data"]}/dev.jsonl', argdict)
+    test=Envirodataset(f'{argdict["path_data"]}/test.jsonl', argdict)
 
     print(len(train), len(dev), len(test))
 if __name__ == '__main__':
