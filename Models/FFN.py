@@ -22,12 +22,18 @@ class Linear_Classifier(pl.LightningModule):
 
         self.init_model()
 
+        self.loss=torch.nn.MSELoss()
+
     def init_model(self):
         self.linear_layer=nn.Linear(4096, 4096)
         # self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.001)
         # for param in self.model.base_model.parameters():
         #     param.requires_grad = False
         # self.optimizer = AdamW(self.model.parameters(), lr=1e-5)
+
+
+    def forward(self, input):
+        return self.linear_layer(input)
 
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self.parameters(), lr=0.001)
@@ -78,17 +84,15 @@ class Linear_Classifier(pl.LightningModule):
         for key, value in batch.items():
             print(key)
         input=batch['PrevFireMask']
+        bs=input.shape[0]
         output=batch['FireMask']
-        output=self.linear_layer(input)
-        print(output)
-        best=torch.softmax(output, dim=-1)
-        pred=torch.argmax(best, dim=-1)
-        acc=accuracy_score(batch['label'].cpu(), pred.cpu())
+        pred=self.forward(input)
 
         loss=self.loss_function(output, batch['label'])
+        print(loss)
         # self.log("Loss", loss, on_epoch=True, on_step=False, prog_bar=True, logger=False,
         #          batch_size=bs)
-        self.log("Acc Dev", acc, on_epoch=True, on_step=False, prog_bar=True, logger=False,
+        self.log("loss", loss, on_epoch=True, on_step=False, prog_bar=True, logger=False,
                  batch_size=bs)
         return loss
 
