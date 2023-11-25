@@ -22,7 +22,7 @@ class Linear_Classifier(pl.LightningModule):
 
         self.init_model()
 
-        self.loss=torch.nn.MSELoss()
+        self.loss_function=torch.nn.MSELoss()
 
     def init_model(self):
         self.linear_layer=nn.Linear(4096, 4096)
