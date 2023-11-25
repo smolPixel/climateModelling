@@ -18,51 +18,13 @@ class Envirodataset(Dataset):
 		for i, row in enumerate(file):
 			row=json.loads(row)
 			row={key: torch.tensor(it) for key, it in row.items()}
-			print(row)
-			fds
-			index+=1
-
-	# def tokenize_and_vectorize(self, sentences):
-	#     """Takes an array of sentences and return encoded data"""
-
-	# def get_unlabelled(self):
-	# 	dico={key:value for key, value in self.data.items() if value['label']==2}
-	# 	return dico
-
-
-	def tokenize(self, sentence):
-		"Tokenize a sentence"
-		return self.vocab_object(self.tokenizer.tokenize("<bos> " + sentence + " <eos>"))
+			self.data[len(self.data)]=row
 
 	def reset_index(self):
 		new_dat = {}
 		for i, (j, dat) in enumerate(self.data.items()):
 			new_dat[i] = dat
 		self.data = new_dat
-
-	@property
-	def vocab_size(self):
-		return len(self.vocab_object)
-
-	@property
-	def vocab(self):
-		return self.vocab_object.get_stoi()
-		# fsd
-		# return self.vocab_object
-
-	def get_w2i(self):
-		return self.vocab_object.get_stoi()
-
-	def process_generated(self, exo):
-		generated = idx2word(exo, i2w=self.get_i2w(),
-							 pad_idx=self.get_w2i()['<pad>'],
-							 eos_idx=self.get_w2i()['<eos>'])
-		for sent in generated:
-			print("------------------")
-			print(sent)
-
-	def get_i2w(self):
-		return self.vocab_object.get_itos()
 
 	def __len__(self):
 		return len(self.data)
@@ -83,50 +45,6 @@ class Envirodataset(Dataset):
 			'label': label,
 		}
 
-	def get_texts(self):
-		"""returns a list of the textual sentences in the dataset"""
-		ll=[]
-		for _, dat in self.data.items():
-			ll.append(dat['sentence'])
-		return ll
-
-	def shape_for_loss_function(self, logp, target):
-		target = target.contiguous().view(-1).cuda()
-		logp = logp.view(-1, logp.size(2)).cuda()
-		return logp, target
-
-	def convert_tokens_to_string(self, tokens):
-		if tokens==[]:
-			return ""
-		else:
-			raise ValueError("Idk what this is supposed to return")
-
-	def arr_to_sentences(self, array):
-		if self.argdict['tokenizer'] in ['tweetTokenizer', 'PtweetTokenizer']:
-			sentences=[]
-			for arr in array:
-				arr=arr.int()
-				sent=self.vocab_object.lookup_tokens(arr.tolist())
-				ss=""
-				for token in sent:
-					if token== "<bos>":
-						continue
-					if token =="<eos>":
-						break
-					ss+=f" {token}"
-				sentences.append(ss)
-			return sentences
-		else:
-			sent_token = self.tokenizer.batch_decode(array, skip_special_token=True)
-			sent_str = []
-			for i, ss in enumerate(sent_token):
-				ss = ss.replace('<bos>', '')
-				ss = ss.replace('<eos>', '')
-				ss = ss.replace('[SEP].', '')
-				ss = ss.replace('[SEP]', '')
-				ss = re.sub(' +', ' ', ss)
-				sent_token[i] = ss.strip()
-			return sent_token
 	def iterexamples(self):
 		for i, ex in self.data.items():
 			yield i, ex
