@@ -17,5 +17,6 @@ if __name__ == '__main__':
 
     stream = open(args['config_file'], "r")
     argdict = yaml.safe_load(stream)
+
     print(argdict)
-    fds
+    main(argdict)
