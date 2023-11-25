@@ -17,7 +17,8 @@ class Envirodataset(Dataset):
 		file=open(data_file, 'r').readlines()
 		for i, row in enumerate(file):
 			row=json.loads(row)
-			print(row.keys())
+			row={key: torch.tensor(it) for key, it in row.items()}
+			print(row)
 			fds
 			index+=1
 
