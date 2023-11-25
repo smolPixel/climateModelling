@@ -21,6 +21,8 @@ class Envirodataset(Dataset):
 			self.data[len(self.data)]=row
 			if argdict['short_data'] and len(self.data)>10:
 				break
+		print(self.data)
+		fds
 
 	def reset_index(self):
 		new_dat = {}
