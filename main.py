@@ -1,7 +1,7 @@
 from utils import Envirodataset
 import yaml
 import argparse
-
+from Models.FFN import Linear_Classifier
 
 def main(argdict):
     train=Envirodataset(f'{argdict["path_data"]}/train.jsonl', argdict)
@@ -9,6 +9,10 @@ def main(argdict):
     test=Envirodataset(f'{argdict["path_data"]}/test.jsonl', argdict)
 
     print(len(train), len(dev), len(test))
+
+    model=Linear_Classifier(argdict, train)
+    model.train_model(train, dev, test)
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='VAE for data augmentation')
     parser.add_argument('--config_file', type=str)
