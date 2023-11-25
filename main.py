@@ -8,7 +8,7 @@ def main(argdict):
     dev=Envirodataset('data/NextDayPred/archive/dev.jsonl')
     test=Envirodataset('data/NextDayPred/archive/test.jsonl')
 
-print(len(train), len(dev), len(test))
+    print(len(train), len(dev), len(test))
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='VAE for data augmentation')
     parser.add_argument('--config_file', type=str)
