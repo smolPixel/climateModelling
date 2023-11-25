@@ -2,9 +2,9 @@ from utils import Envirodataset
 import yaml
 import argparse
 
-train=Envirodataset('data/NextDayPred/archive/train.jsonl')
-dev=Envirodataset('data/NextDayPred/archive/dev.jsonl')
-test=Envirodataset('data/NextDayPred/archive/test.jsonl')
+
+def main(argdict):
+    
 
 print(len(train), len(dev), len(test))
 if __name__ == '__main__':
