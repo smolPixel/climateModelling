@@ -23,7 +23,7 @@ class Linear_Classifier(pl.LightningModule):
         self.init_model()
 
     def init_model(self):
-        self.linear_layer=nn.Linear(300, 300)
+        self.linear_layer=nn.Linear(4096, 4096)
         # self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.001)
         # for param in self.model.base_model.parameters():
         #     param.requires_grad = False
@@ -79,14 +79,8 @@ class Linear_Classifier(pl.LightningModule):
             print(key)
         input=batch['PrevFireMask']
         output=batch['FireMask']
-        bs=input.shape[0]
-        print(input.shape)
-        fds
-        if self.argdict['need_embedding']:
-            input=self.embedding(input)
-            input=torch.mean(input, dim=1)
-        input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
-        output=self.linear_layer(input_sequence)
+        output=self.linear_layer(input)
+        print(output)
         best=torch.softmax(output, dim=-1)
         pred=torch.argmax(best, dim=-1)
         acc=accuracy_score(batch['label'].cpu(), pred.cpu())
