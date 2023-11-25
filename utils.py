@@ -17,6 +17,8 @@ class Envirodataset(Dataset):
 		file=open(data_file, 'r').readlines()
 		for i, row in enumerate(file):
 			row=json.loads(row)
+			print(row.keys())
+			fds
 			row={key: torch.tensor(it) for key, it in row.items()}
 			self.data[len(self.data)]=row
 			if argdict['short_data'] and len(self.data)>10:
