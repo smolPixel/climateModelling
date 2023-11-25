@@ -75,10 +75,11 @@ class Linear_Classifier(pl.LightningModule):
 
 
     def validation_step(self, batch, batch_idx):
-        print(batch)
-        fsd
-        input=batch['input']
+        input=batch['previous fire mask']
+        output=batch['fire mask']
         bs=input.shape[0]
+        print(input.shape)
+        fds
         if self.argdict['need_embedding']:
             input=self.embedding(input)
             input=torch.mean(input, dim=1)
