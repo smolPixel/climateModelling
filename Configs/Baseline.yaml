@@ -1,0 +1,7 @@
+data_path: 'data/NextDayPred/archive'
+
+
+
+short_train: True
+short_dev: True
+short_test: True
