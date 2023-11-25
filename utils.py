@@ -16,6 +16,7 @@ class Envirodataset(Dataset):
 		self.data = {}
 		file=open(data_file, 'r').readlines()
 		for i, row in enumerate(file):
+			row=json.loads(row)
 			print(row.keys())
 			fds
 			index+=1
